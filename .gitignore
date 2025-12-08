@@ -1,0 +1,15 @@
+# ignored files
+.idea
+.env
+venv
+__pycache__
+*.pyc
+docs-ru
+
+# Data
+data/db/
+data/sessions/
+data/storage/
+data/logs/
+*.log
+*.db

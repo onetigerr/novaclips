@@ -1,0 +1,17 @@
+[project]
+name = "novaclips"
+version = "0.1.0"
+description = "Automated video clipping and upload pipeline"
+dependencies = [
+    "click",
+    "ffmpeg-python",
+    "playwright",
+    "requests",  # for AdsPower API
+]
+
+[project.scripts]
+novaclips = "novaclips.main:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
