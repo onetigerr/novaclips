@@ -8,3 +8,4 @@ Before writing any code or answering questions about the project structure, YOU 
 - openspec/project.md
 
 When asked to implement a feature, check for existing specs in `openspec/specs/` or proposed changes in `openspec/changes/`.
+

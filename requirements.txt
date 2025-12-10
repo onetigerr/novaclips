@@ -2,3 +2,6 @@ click
 ffmpeg-python
 playwright
 requests
+Telethon
+python-dotenv
+PyYAML

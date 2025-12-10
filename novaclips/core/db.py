@@ -6,12 +6,13 @@ from typing import Optional, List, Dict, Any
 
 logger = logging.getLogger(__name__)
 
-DB_PATH = Path("data/db/novaclips.db")
+from novaclips.config import settings
+
 SCHEMA_PATH = Path(__file__).parent / "schema.sql"
 
 class DatabaseManager:
-    def __init__(self, db_path: Path = DB_PATH):
-        self.db_path = db_path
+    def __init__(self, db_path: Path = None):
+        self.db_path = db_path or settings.db_path
         self._init_db()
 
     def _init_db(self):

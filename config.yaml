@@ -1,0 +1,11 @@
+NOVACLIPS_ENV: dev
+
+DB_URL: sqlite:///data/db/novaclips.db
+LOG_PATH: ./data/logs/app.log
+SESSION_DIR: ./data/sessions
+MEDIA_ROOT: ./data/storage
+RAW_DIR: ./data/storage/raw
+CLEAN_DIR: ./data/storage/clean
+READY_DIR: ./data/storage/ready
+
+DEFAULT_CTA_LINK: https://example.com/landing

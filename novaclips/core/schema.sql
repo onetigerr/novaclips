@@ -24,7 +24,10 @@ CREATE TABLE IF NOT EXISTS media_items (
     -- Upload Info
     upload_channel TEXT,             -- Which channel it was uploaded to
     upload_url TEXT,                 -- YouTube URL
-    upload_metadata TEXT             -- JSON dump of title, tags, description
+    upload_metadata TEXT,            -- JSON dump of title, tags, description
+    
+    -- Error tracking
+    processing_error TEXT            -- Error message if processing failed
 );
 
 CREATE INDEX IF NOT EXISTS idx_content_hash ON media_items(content_hash);
