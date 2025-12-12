@@ -17,6 +17,7 @@ from .ffmpeg_utils import (
     calculate_crop_params,
     run_ffmpeg
 )
+from novaclips.config import settings
 
 logger = logging.getLogger(__name__)
 
@@ -71,12 +72,12 @@ class Normalizer(VideoProcessor):
             width = video_info['width']
             height = video_info['height']
             
-            # Check orientation - reject horizontal videos
-            if not self._check_orientation(width, height):
+            # Check dimensions and orientation
+            if not self._validate_dimensions(width, height):
                 return False
             
             # Build FFmpeg filter chain
-            filters = self._build_filter_chain(width, height)
+            filters = self.get_filter_chain(width, height)
             
             # Run FFmpeg normalization
             return self._run_normalization(input_path, output_path, filters)
@@ -85,28 +86,51 @@ class Normalizer(VideoProcessor):
             self.logger.error(f"Normalization failed: {e}", exc_info=True)
             return False
     
-    def _check_orientation(self, width: int, height: int) -> bool:
+    def _validate_dimensions(self, width: int, height: int) -> bool:
         """
-        Check if video is vertical (height > width).
-        Horizontal videos are rejected.
+        Validate video dimensions and orientation.
+        Rejects horizontal videos and those below minimum resolution.
         
         Args:
             width: Video width
             height: Video height
             
         Returns:
-            True if vertical, False if horizontal
+            True if valid, False otherwise
         """
+        # 1. Check orientation
         if width > height:
             self.logger.warning(
                 f"Rejecting horizontal video: {width}x{height}. "
                 "Only vertical videos are supported."
             )
             return False
+            
+        # 2. Check minimum resolution
+        min_h = settings.processing.get('MIN_RESOLUTION_HEIGHT', 800)
+        min_w = settings.processing.get('MIN_RESOLUTION_WIDTH', 450)
         
-        self.logger.info(f"Video is vertical: {width}x{height} ✓")
+        if height < min_h:
+            self.logger.warning(
+                f"Rejecting video with low height: {height}px < {min_h}px"
+            )
+            return False
+            
+        if width < min_w:
+            self.logger.warning(
+                f"Rejecting video with low width: {width}px < {min_w}px"
+            )
+            return False
+        
+        self.logger.info(f"Video dimensions valid: {width}x{height} (Vertical, >{min_w}x{min_h}) ✓")
         return True
     
+    def get_filter_chain(self, width: int, height: int) -> str:
+        """
+        Public method to get normalization filters.
+        """
+        return self._build_filter_chain(width, height)
+
     def _build_filter_chain(self, width: int, height: int) -> str:
         """
         Build FFmpeg filter chain for normalization.

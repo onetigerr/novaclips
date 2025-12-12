@@ -18,10 +18,9 @@
 - [ ] 4.4 Connect processing step to CLI (`novaclips process`)
 
 ## 5. Upload
-- [ ] 5.1 Implement `AdsPowerClient` (Wrapper for Local API: `/api/v1/user/start`)
-- [ ] 5.2 Implement `BrowserManager` (Connect Playwright to `ws` endpoint)
-- [ ] 5.3 Implement `YouTubeUploader` (Navigation, File selection, Form filling)
-- [ ] 5.4 Connect upload step to CLI (`novaclips upload`)
+- [ ] 5.1 Implement `BrowserManager` (Launch Playwright with `launch_persistent_context`)
+- [ ] 5.2 Implement `YouTubeUploader` (Navigation, File selection, Form filling)
+- [ ] 5.3 Connect upload step to CLI (`novaclips upload`)
 
 ## 6. Verification
 - [ ] 6.1 Run full E2E test: Ingest -> Process -> Upload (Manual verification)

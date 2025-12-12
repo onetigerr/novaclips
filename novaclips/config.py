@@ -57,6 +57,26 @@ class Config:
             return Path(url.replace("sqlite:///", ""))
         return Path("data/db/novaclips.db")
 
+    @property
+    def debug_dir(self) -> Path:
+        return Path(self.data.get("DEBUG_DIR", "./data/storage/debug"))
+
+    @property
+    def music_dir(self) -> Path:
+        return Path(self.data.get("MUSIC_DIR", "./data/music"))
+
+    @property
+    def subtitles(self) -> Dict[str, Any]:
+        return self.data.get("SUBTITLES", {})
+
+    @property
+    def whisper(self) -> Dict[str, Any]:
+        return self.data.get("WHISPER", {})
+
+    @property
+    def processing(self) -> Dict[str, Any]:
+        return self.data.get("PROCESSING", {})
+
 # Global instance
 # Assuming config.yaml is in the project root (CWD usually)
 # Adjust path if necessary depending on where the entry point is run from.

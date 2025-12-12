@@ -5,3 +5,6 @@ requests
 Telethon
 python-dotenv
 PyYAML
+faster-whisper
+numpy
+

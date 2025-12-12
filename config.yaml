@@ -7,5 +7,52 @@ MEDIA_ROOT: ./data/storage
 RAW_DIR: ./data/storage/raw
 CLEAN_DIR: ./data/storage/clean
 READY_DIR: ./data/storage/ready
+DEBUG_DIR: ./data/storage/debug
+MUSIC_DIR: ./data/music
 
 DEFAULT_CTA_LINK: https://example.com/landing
+
+SUBTITLES:
+  FONT: Arial
+  SIZE: 24
+  COLOR: white
+  OUTLINE_COLOR: black
+  OUTLINE_WIDTH: 2
+  POSITION: bottom_center
+
+WHISPER:
+  # Model selection: tiny/base/small/medium/large-v2/large-v3
+  # medium recommended for quality (100% accuracy vs errors in small)
+  MODEL_SIZE: medium
+  
+  # Device: cpu, cuda, or auto
+  # cuda requires: NVIDIA GPU + cuBLAS + cuDNN (5-10x faster)
+  DEVICE: cpu
+  
+  # Compute type: int8 (CPU), float16 (GPU), float32 (slow but accurate)
+  COMPUTE_TYPE: int8
+  
+  # Language: ru (force Russian), null/auto (auto-detect)
+  # Forcing language saves ~1-2s by skipping detection
+  LANGUAGE: null
+  
+  # CPU threads: 0 (auto), or number of physical cores
+  # This system has 6 physical cores, 12 logical
+  # Recommended: 6 (physical cores) for best performance
+  CPU_THREADS: 6
+  
+  # Beam size: 5 (default), 10 (better quality, slower)
+  # Higher values improve quality but increase processing time
+  BEAM_SIZE: 5
+
+PROCESSING:
+  MIN_RESOLUTION_HEIGHT: 800
+  MIN_RESOLUTION_WIDTH: 450
+  ZOOM_FACTOR_10S: 0.04
+  ZOOM_FACTOR_20S: 0.05
+  ZOOM_FACTOR_40S: 0.06
+  ZOOM_FACTOR_80S: 0.07
+  SPEED_MIN_PERCENT: 3
+  SPEED_MAX_PERCENT: 7
+  AUDIO_VOLUME_MIN_DB: -12
+  AUDIO_VOLUME_MAX_DB: -8

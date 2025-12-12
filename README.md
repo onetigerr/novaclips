@@ -127,26 +127,59 @@ Backend options:
 
 ### 3. Transform / Unique / Clean
 
-**Goal:** turn raw media into “clean” clips suitable for short-form platforms.
+**Goal:** turn raw media into "clean" clips suitable for short-form platforms while avoiding content fingerprinting.
 
-Typical operations (FFmpeg):
+The MVP uniquification process applies 6 transformation techniques to ensure videos are not flagged as duplicate content:
 
-* normalize to vertical format (e.g. 1080x1920)
-* crop unwanted borders
-* trim heads/tails (fixed or configurable)
-* overlay:
+#### 1. Aspect Ratio Conversion to 9:16
 
-  * frame/branding
-  * short text or CTA
-* audio adjustments:
+* Only vertical videos are processed (horizontal videos are rejected)
+* Convert vertical source videos to exact 1080×1920 format
+* **Center-crop** to 9:16 aspect ratio
 
-  * normalize volume
-  * replace or mix background track
+#### 2. Speed Variation
+
+* Apply subtle speed modifications: ±3–7% (e.g., 0.95x or 1.05x)
+* Changes timing and audio fingerprints without affecting viewer perception
+
+#### 3. Audio Mixing
+
+* Extract original audio
+* Add royalty-free background music track (looped)
+* Reduce background music volume by -8 to -12 dB relative to speech
+* Apply audio ducking to keep speech intelligible
+
+#### 4. Auto Zoom and Pan Effects
+
+* Apply slow zoom-in/zoom-out throughout the video or in segments
+* OR apply subtle pan movements (up/down shifts)
+* Effects are subtle enough not to disturb viewing experience
+
+#### 5. Auto-Generated Subtitles
+
+* Separate video and audio streams
+* Process audio separately (apply music mixing and ducking)
+* Transcribe processed audio using ASR (Whisper or equivalent)
+* Burn subtitles permanently into the final video (hard-coded)
+* Consistent subtitle styling across all videos
+
+#### 6. Edge Trimming
+
+* Trim 0.5–1 second from beginning and/or end
+* Optionally add short fade-in/fade-out effects
+* Modifies total duration and timecodes
+
+**Additional Operations:**
+
+* Normalize frame rate to 30 fps
+* Strip all metadata (EXIF, creation time, source tags)
+* Normalize audio volume
 
 Output:
 
 * File in `storage/clean/`
 * Update `media_items.status = 'CLEAN'`
+
 
 ---
 

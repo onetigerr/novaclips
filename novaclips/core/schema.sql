@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS media_items (
     -- Processing Info
     content_hash TEXT,               -- MD5 or similar to detect duplicates
     duration_seconds INTEGER,
+    transform_params TEXT,           -- JSON dump of applied uniquification params
     
     -- Lifecycle
     status TEXT NOT NULL DEFAULT 'raw', -- raw, clean, ready, uploaded, failed

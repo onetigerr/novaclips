@@ -20,6 +20,7 @@ class VideoProcessor(ABC):
     
     def __init__(self):
         self.logger = logger
+        self.last_params: Dict = {}
     
     @abstractmethod
     def process(self, input_path: Path, output_path: Path) -> bool:

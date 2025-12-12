@@ -5,11 +5,14 @@ venv
 __pycache__
 *.pyc
 docs-ru
+*.log
+*.db
 
 # Data
 data/db/
 data/sessions/
 data/storage/
 data/logs/
-*.log
-*.db
+/data/browser_profile/
+/data/music/
+/data/tests/

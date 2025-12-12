@@ -11,6 +11,8 @@ class MediaItem:
     status: str = "raw"
     content_hash: Optional[str] = None
     duration_seconds: Optional[int] = None
+    title: Optional[str] = None  # Explicit title for upload (optional)
+    transform_params: Optional[str] = None  # JSON encoded parameters
     
     # Paths (stored as strings relative to root)
     raw_path: Optional[str] = None

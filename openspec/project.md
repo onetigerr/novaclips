@@ -65,3 +65,6 @@ We strictly follow a two-stage evolution strategy to minimize over-engineering.
 ## Important Constraints
 - **Filesystem**: Use absolute paths or project-relative paths anchored to a configurable ROOT_DIR.
 - **Rate Limits**: Respect Telegram and YouTube API/Browser limits. Imposing delays is better than getting banned.
+
+## Agent Instructions
+- **User Preferences**: You MUST read and follow the instructions in `.agent/user-preferences.md` at the start of every session. This file contains critical communication and interaction rules.

@@ -27,6 +27,8 @@ from novaclips.core.dao import MediaDAO
 from novaclips.core.models import MediaItem
 from novaclips.core.ingest.local import LocalIngest
 from novaclips.core.ingest.telegram import TelegramIngest
+from novaclips.core.upload.browser import BrowserManager
+from novaclips.core.upload.youtube import YouTubeUploader
 import asyncio
 
 @click.group()
@@ -80,7 +82,7 @@ def ingest(ctx, source, path, channel):
 @click.pass_context
 def process(ctx, batch_size, item_id):
     """Process 'raw' items to 'clean' (normalize videos)."""
-    from novaclips.core.processing import Normalizer
+    from novaclips.core.processing import Uniquifier
     from novaclips.core.models import MediaItem
     from datetime import datetime
     
@@ -110,7 +112,8 @@ def process(ctx, batch_size, item_id):
     logger.info(f"Processing {len(items)} items")
     click.echo(f"Processing {len(items)} items...")
     
-    normalizer = Normalizer()
+    # Use Uniquifier for full pipeline (Normalize + Subtitles + Effects)
+    processor = Uniquifier()
     success_count = 0
     failed_count = 0
     
@@ -134,15 +137,15 @@ def process(ctx, batch_size, item_id):
         # Determine output path
         clean_dir = settings.clean_dir
         clean_dir.mkdir(parents=True, exist_ok=True)
-        output_filename = f"{raw_path.stem}_normalized.mp4"
+        output_filename = f"{raw_path.stem}_unique.mp4"
         clean_path = clean_dir / output_filename
         
         # Process video
         try:
-            success = normalizer.process(raw_path, clean_path)
+            success = processor.process(raw_path, clean_path)
             
             if success and clean_path.exists():
-                click.echo(f"  ✓ Normalized successfully")
+                click.echo(f"  ✓ Processed successfully")
                 dao.update_status(
                     item.id,
                     'clean',
@@ -151,7 +154,7 @@ def process(ctx, batch_size, item_id):
                 )
                 success_count += 1
             else:
-                click.echo(f"  ✗ Normalization failed")
+                click.echo(f"  ✗ Processing failed")
                 dao.update_status(item.id, 'failed', processing_error='normalization failed')
                 failed_count += 1
                 
@@ -166,6 +169,33 @@ def process(ctx, batch_size, item_id):
     logger.info(f"Processing complete: {success_count} success, {failed_count} failed")
 
 @cli.command()
+def auth():
+    """Launch browser for manual authentication (Google Login)."""
+    click.echo("Launching browser for authentication...")
+    click.echo("Please log in to your Google Account/YouTube Channel.")
+    click.echo("Press Enter in this terminal when you are done to save the session.")
+    
+    # Ensure profile directory exists
+    profile_dir = Path("data/browser_profile")
+    profile_dir.mkdir(parents=True, exist_ok=True)
+    
+    browser = BrowserManager(user_data_dir=profile_dir)
+    try:
+        browser.launch(headless=False)
+        page = browser.get_page()
+        page.goto("https://www.youtube.com")
+        
+        # Wait for user to manually interact
+        input("Press Enter to close browser and save session...")
+        
+    except Exception as e:
+        click.echo(f"Error during auth: {e}")
+        logger.error(f"Auth error: {e}", exc_info=True)
+    finally:
+        browser.close()
+        click.echo("Browser closed. Session saved.")
+
+@cli.command()
 @click.pass_context
 def upload(ctx):
     """Upload 'ready' items to YouTube."""
@@ -177,10 +207,53 @@ def upload(ctx):
         click.echo("No ready items found.")
         return
 
-    # Mock upload loop
-    for item in ready_items:
-        click.echo(f"Uploading item {item.id}...")
-        # Logic to call Uploader will go here...
+    # Initialize Browser
+    profile_dir = Path("data/browser_profile")
+    if not profile_dir.exists():
+        click.echo("Error: Browser profile not found. Please run 'novaclips auth' first.")
+        return
+
+    browser = BrowserManager(user_data_dir=profile_dir)
+    browser.launch(headless=False) # Use false for now to debug
+    page = browser.get_page()
+    uploader = YouTubeUploader(page)
+
+    uploaded_count = 0
+    
+    try:
+        for item in ready_items:
+            click.echo(f"\nUploading item {item.id}: {item.title or item.original_filename}...")
+            
+            # Determine file path (check clean_path)
+            if not item.clean_path:
+                click.echo("  ✗ Error: clean_path is missing")
+                continue
+                
+            file_path = Path(item.clean_path)
+            if not file_path.exists():
+                click.echo(f"  ✗ Error: File not found {file_path}")
+                continue
+
+            success = uploader.upload_video(
+                file_path=file_path,
+                title=item.title, # Might be None, handled in uploader
+                description=None # TODO: generate description
+            )
+            
+            if success:
+                click.echo("  ✓ Uploaded successfully")
+                dao.update_status(item.id, 'uploaded')
+                uploaded_count += 1
+            else:
+                click.echo("  ✗ Upload failed")
+                # Don't fail the batch, just log
+                
+    except Exception as e:
+        click.echo(f"Critical error during upload batch: {e}")
+        logger.error(f"Upload batch error: {e}", exc_info=True)
+    finally:
+        browser.close()
+        click.echo(f"\nUpload run complete. Uploaded: {uploaded_count}")
 
 def main():
     cli(obj={})
