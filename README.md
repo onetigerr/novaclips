@@ -344,6 +344,176 @@ Implementation options:
 
 ---
 
+## CLI Usage
+
+NovaClips provides a command-line interface for managing the entire video pipeline.
+
+### Available Commands
+
+```bash
+python -m novaclips.main [COMMAND] [OPTIONS]
+```
+
+#### 1. `ingest` – Import videos from sources
+
+Download videos from Telegram channels or local folders.
+
+```bash
+# Ingest from Telegram channel (default: last 50 videos)
+python -m novaclips.main ingest --source telegram --channel <CHANNEL_ID>
+
+# Ingest specific number of videos
+python -m novaclips.main ingest --source telegram --channel <CHANNEL_ID> --limit 100
+
+# Ingest from local folder
+python -m novaclips.main ingest --source local --path /path/to/videos
+```
+
+**Options:**
+- `--source` (required): `telegram` or `local`
+- `--channel`: Telegram channel ID (required for telegram source)
+- `--path`: Local directory path (required for local source)
+- `--limit`: Maximum number of videos to download from Telegram (default: 50)
+
+**Output:** Videos saved to `data/storage/raw/`, status = `raw`
+
+---
+
+#### 2. `process` – Transform raw videos
+
+Apply uniquification pipeline: normalization, speed adjustment, audio mixing, subtitles, effects.
+
+```bash
+# Process all raw videos
+python -m novaclips.main process
+
+# Process specific video by ID
+python -m novaclips.main process --id 30
+
+# Process up to 5 videos
+python -m novaclips.main process --batch-size 5
+```
+
+**Options:**
+- `--id`: Process specific item by database ID
+- `--batch-size`: Maximum number of videos to process
+
+**Output:** Videos saved to `data/storage/clean/`, status = `clean`
+
+---
+
+#### 3. Manual Moderation (File-based)
+
+After processing, review videos in `data/storage/clean/` and **manually delete** any you don't want to publish.
+
+---
+
+#### 4. `cleanup` – Sync database with filesystem
+
+Remove database entries for videos that were manually deleted from `clean/` directory.
+
+```bash
+python -m novaclips.main cleanup
+```
+
+**Output:** Orphaned database records are removed.
+
+---
+
+#### 5. `prepare` – Generate descriptions and copy to ready/
+
+Extract video frames, generate AI-powered titles/descriptions/hashtags using Groq Vision API, and copy files to `ready/` directory.
+
+```bash
+# Prepare all clean videos
+python -m novaclips.main prepare
+
+# Prepare specific video
+python -m novaclips.main prepare --id 43
+```
+
+**Options:**
+- `--id`: Prepare specific item by database ID
+
+**Requirements:**
+- `GROQ_API_KEY` environment variable must be set
+- Videos must have status = `clean`
+
+**Output:** 
+- Files copied to `data/storage/ready/` with format `{id}_{slug}.mp4`
+- Original files remain in `clean/` directory
+- Metadata saved to database
+- Status updated to `ready`
+
+---
+
+#### 6. `auth` – Authenticate with YouTube
+
+Launch browser for manual Google/YouTube login. Session is saved for future uploads.
+
+```bash
+python -m novaclips.main auth
+```
+
+**Instructions:**
+1. Browser window opens
+2. Log in to your Google/YouTube account
+3. Press Enter in terminal when done
+4. Session saved to `data/browser_profile/`
+
+**Note:** Run this once before first upload.
+
+---
+
+#### 7. `upload` – Publish videos to YouTube
+
+Upload videos with AI-generated titles and descriptions.
+
+```bash
+# Upload all ready videos
+python -m novaclips.main upload
+
+# Upload maximum 3 videos (daily limit control)
+python -m novaclips.main upload --batch-size 3
+```
+
+**Options:**
+- `--batch-size`: Maximum number of videos to upload
+
+**Requirements:**
+- Must run `auth` command first
+- Videos must have status = `ready`
+
+**Output:** Videos published to YouTube, status = `uploaded`
+
+---
+
+### Complete Workflow Example
+
+```bash
+# 1. Download videos from Telegram
+python -m novaclips.main ingest --source telegram --channel -1001234567890
+
+# 2. Process videos (uniquification)
+python -m novaclips.main process
+
+# 3. Manual review: Open data/storage/clean/ and delete unwanted videos
+
+# 4. Clean up database
+python -m novaclips.main cleanup
+
+# 5. Generate descriptions and prepare for upload
+python -m novaclips.main prepare
+
+# 6. Authenticate (first time only)
+python -m novaclips.main auth
+
+# 7. Upload to YouTube (max 3 per day)
+python -m novaclips.main upload --batch-size 3
+```
+
+---
+
 ## Quickstart (Conceptual)
 
 1. **Install prerequisites**

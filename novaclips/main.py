@@ -44,8 +44,9 @@ def cli(ctx):
 @click.option('--source', type=click.Choice(['local', 'telegram']), required=True, help='Source type to ingest from')
 @click.option('--path', help='Path for local source', required=False)
 @click.option('--channel', help='Channel ID for telegram source', required=False)
+@click.option('--limit', default=50, type=int, help='Maximum number of videos to download (default: 50)')
 @click.pass_context
-def ingest(ctx, source, path, channel):
+def ingest(ctx, source, path, channel, limit):
     """Ingest new media from source."""
     dao = ctx.obj['dao']
     logger.info(f"Starting ingestion from {source}")
@@ -72,6 +73,7 @@ def ingest(ctx, source, path, channel):
             return
             
         strategy = TelegramIngest(dao)
+        strategy.max_history = limit  # Override default
         # Run async process in sync context
         asyncio.run(strategy.process_channel(channel))
         click.echo(f"Finished processing channel {channel}")
@@ -254,13 +256,28 @@ def prepare(ctx, item_id):
             else:
                 click.echo(f"  ✓ Generated: {meta.get('title', 'No Title')}")
                 
-            # 5. Rename File
+            # 5. Copy to ready/ with new name
             slug = meta.get('slug', f"video_{item.id}")
             # sanitize slug lightly
             slug = "".join([c for c in slug if c.isalnum() or c in '-_']).strip()
             
-            new_path = renamer.rename_item(item.id, video_path, slug)
-            click.echo(f"  - Renamed to: {new_path.name}")
+            # Prepare ready directory
+            ready_dir = settings.ready_dir
+            ready_dir.mkdir(parents=True, exist_ok=True)
+            
+            # New filename
+            new_filename = f"{item.id}_{slug}.mp4"
+            ready_path = ready_dir / new_filename
+            
+            # Copy video file
+            import shutil
+            shutil.copy2(video_path, ready_path)
+            click.echo(f"  - Copied to ready/: {new_filename}")
+            
+            # Copy SRT if exists
+            if srt_path.exists():
+                ready_srt = ready_path.with_suffix('.srt')
+                shutil.copy2(srt_path, ready_srt)
             
             # 6. Update DB
             # Add cta link if configured (globally) - assumed added by user manually or we can add here
@@ -275,7 +292,7 @@ def prepare(ctx, item_id):
             dao.update_status(
                 item.id,
                 'ready',
-                clean_path=str(new_path),
+                ready_path=str(ready_path),
                 upload_metadata=meta_json
             )
             success_count += 1
@@ -396,12 +413,12 @@ def upload(ctx, batch_size):
         for item in ready_items:
             click.echo(f"\nUploading item {item.id}...")
             
-            # Determine file path (check clean_path)
-            if not item.clean_path:
-                click.echo("  ✗ Error: clean_path is missing")
+            # Determine file path (check ready_path)
+            if not item.ready_path:
+                click.echo("  ✗ Error: ready_path is missing")
                 continue
                 
-            file_path = Path(item.clean_path)
+            file_path = Path(item.ready_path)
             if not file_path.exists():
                 click.echo(f"  ✗ Error: File not found {file_path}")
                 continue
