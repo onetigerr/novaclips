@@ -271,7 +271,17 @@ class Uniquifier(VideoProcessor):
         ])
         
         self.logger.info("Running One-Pass FFmpeg Pipeline...")
-        return run_ffmpeg(cmd, f"Processing {input_path.name}")
+        result = run_ffmpeg(cmd, f"Processing {input_path.name}")
+        
+        if result and final_srt_path and final_srt_path.exists():
+            try:
+                output_srt = output_path.with_suffix('.srt')
+                shutil.copy(final_srt_path, output_srt)
+                self.logger.info(f"Saved final subtitles to {output_srt}")
+            except Exception as e:
+                self.logger.warning(f"Failed to save output SRT: {e}")
+                
+        return result
         
     def _merge_segments(self, segments, gap_threshold=2.0):
         """Merge segments closer than threshold."""
