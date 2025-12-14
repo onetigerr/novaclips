@@ -43,10 +43,22 @@ class MediaDAO:
         """Get items ready for upload (status='ready')."""
         return self._get_by_status('ready')
 
+    def get_by_status(self, status: str) -> List[MediaItem]:
+        """Get items by specific status (public alias)."""
+        return self._get_by_status(status)
+
+    # Alias for main.py compatibility if I named it differently there
+    get_items_by_status = get_by_status
+
     def _get_by_status(self, status: str) -> List[MediaItem]:
         query = "SELECT * FROM media_items WHERE status = ?"
         rows = self.db.fetch_all(query, (status,))
         return [MediaItem.from_row(row) for row in rows]
+        
+    def delete_item(self, item_id: int):
+        """Delete an item from the database."""
+        query = "DELETE FROM media_items WHERE id = ?"
+        self.db.execute_query(query, (item_id,))
 
     def update_status(self, item_id: int, new_status: str, **kwargs):
         """

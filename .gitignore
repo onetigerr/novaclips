@@ -13,6 +13,6 @@ data/db/
 data/sessions/
 data/storage/
 data/logs/
-/data/browser_profile/
-/data/music/
-/data/tests/
+data/browser_profile/
+data/music/
+data/tests/
