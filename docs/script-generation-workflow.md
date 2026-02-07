@@ -41,6 +41,11 @@ Before writing, understand the 3 content categories:
 
 ### Step 1: Create Outline (Author Role)
 
+> [!TIP]
+> **How to use placeholders:** 
+> When you see `[YOUR ...]`, replace it with your actual data before sending the prompt.
+> For example, `AUDIENCE: [YOUR AUDIENCE]` becomes `AUDIENCE: Senior Python Developers`.
+
 **Copy this prompt into ChatGPT:**
 
 ```
@@ -65,71 +70,49 @@ For each section provide:
 - Estimated duration
 
 IMPORTANT:
-- Mark any historical facts with [VERIFY]
-- Mark any statistics/numbers with [SOURCE NEEDED]
-- Do NOT invent specific dates, percentages, or attributions
+- **Markers**: These are signals from the LLM to you. 
+- Mark any historical facts with `[VERIFY]` (means: check if this event actually happened).
+- Mark any statistics/numbers with `[SOURCE NEEDED]` (means: find a real reference for this number).
+- Do NOT invent specific dates, percentages, or attributions.
 ```
 
 **Your action:** Review the outline. Remove or note any claims with [VERIFY] or [SOURCE NEEDED].
 
 ---
 
-### Step 2: Write Each Section (Author Role)
+### Step 2: Write Sections (Context-Aware)
 
-**For each section, use this prompt:**
+> [!IMPORTANT]
+> **Use the same chat window!** Since the LLM already knows the outline, you don't need to copy-paste it back. Just tell it which section to write.
+
+**Prompt to send:**
 
 ```
-You are writing a section of an educational YouTube script.
+Excellent. Now, following the outline we just created, write the FULL SPOKEN TEXT for [SECTION NUMBER, e.g., Section 1].
 
-SECTION: [SECTION NAME FROM OUTLINE]
-DURATION: [DURATION] (~X words)
-POINTS TO COVER:
-- Point 1
-- Point 2
-- Point 3
-
-Write the spoken text. Requirements:
-- Conversational, natural speech
-- Short sentences (max 20 words average)
-- Active voice
-- No jargon without explanation
-
-Classify each factual claim inline:
-- 🟢 [SAFE: claim] — basic definitions/mechanics
-- 🟡 [CAUTIOUS: claim] — history, who invented what
-- 🔴 [STRICT: claim] — numbers, percentages, comparisons
-
-At the end, list all CAUTIOUS and STRICT claims separately.
+Requirements:
+- Conversational, active voice, short sentences.
+- Use the estimated duration from the outline.
+- Classify claims inline: 🟢 [SAFE], 🟡 [CAUTIOUS], 🔴 [STRICT].
+- List all CAUTIOUS and STRICT claims at the end of the text.
 ```
 
 ---
 
 ### Step 3: Review Section (Editor Role)
 
-**Switch to Editor role with this prompt:**
+**Prompt to send in the same chat:**
 
 ```
-You are a senior script editor. Review this section for:
+Now, switch to the role of a Senior Script Editor. 
+Review the text you just wrote for [SECTION NUMBER].
 
-[PASTE SECTION TEXT HERE]
+Check for:
+1. Clarity and Flow.
+2. Correctness of claim classification.
+3. Harmful content (medical/financial advice, etc.).
 
-Check:
-1. Clarity — sentences under 20 words?
-2. Flow — smooth transitions?
-3. Claims — correctly classified?
-
-Create a table:
-| Claim | Tier | Action |
-|-------|------|--------|
-
-Actions: KEEP / VERIFY / REMOVE / REPHRASE
-
-Flag any harmful content:
-- Medical/financial/legal advice
-- Unverified promises
-- Misleading comparisons
-
-Provide specific revision suggestions.
+Provide a table of claims and specific revision suggestions if needed.
 ```
 
 ---

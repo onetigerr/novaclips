@@ -22,7 +22,8 @@
 flowchart LR
     A[1. Idea] --> B[2. Research]
     B --> C[3. Script]
-    C --> D[4. Shot List]
+    C --> CA[3.5 Visual Style]
+    CA --> D[4. Shot List]
     D --> E[5. Voiceover]
     E --> F[6. Timing]
     F --> G[7. Visuals]
@@ -106,6 +107,29 @@ flowchart LR
 
 **Artifacts:**
 - `script-v{N}.md` — script version with scene markers
+
+---
+
+### Phase 3.5: Visual Style and Character Development
+
+**Goal:** Establish the visual language of the video and define the appearance of the characters.
+
+| Step | Description | Automated? |
+|------|-------------|------------|
+| 3.5.1 | Visual concept description (atmosphere, colors) | ⚠️ Partial (LLM draft) |
+| 3.5.2 | Generating 5–10 concept arts (characters, key scenes) | ✅ Automated (generation by prompts) |
+| 3.5.3 | Selecting reference style for the shot list | ❌ Manual (creative choice) |
+| 3.5.4 | Creating a prompt mini-guide (Style Bible) | ⚠️ Partial (LLM extraction from successful generations) |
+
+**Use Cases:**
+- UC-3.5.1: Creating a unique character for a series of videos
+- UC-3.5.2: Defining the color palette (noir, neon, minimalist)
+- UC-3.5.3: Generating a "moodboard" for approval with the creator/client
+- UC-3.5.4: Fixing Seed numbers for consistency (if applicable)
+
+**Artifacts:**
+- `viz-concept/concept-images/` — folder with 5–10 best concepts
+- `viz-concept/style-guide.md` — style description and key prompts
 
 ---
 
@@ -450,6 +474,13 @@ flowchart LR
 - [ ] Risk review performed for sensitive topics
 - [ ] No factual errors
 
+### Gate AC: After Concept (Before Shot List)
+
+- [ ] 5-10 reference images selected
+- [ ] Character style is consistent (if applicable)
+- [ ] Color scheme matches the script's mood
+- [ ] "Style Bible" exists for generating the main shot list
+
 ### Gate B: After Voiceover (Before Video Assembly)
 
 - [ ] Voiceover pace is comfortable (not too fast)
@@ -489,6 +520,10 @@ project/
 │   │   ├── script-v1.md             # Script versions
 │   │   ├── script-v2.md
 │   │   └── script-final.md
+│   │
+│   ├── viz-concept/
+│   │   ├── style-guide.md           # Visual style description
+│   │   └── concept-images/          # 5-10 reference images
 │   │
 │   ├── planning/
 │   │   ├── shotlist.yaml            # Shot list with visual types

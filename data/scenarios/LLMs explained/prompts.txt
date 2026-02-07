@@ -1,0 +1,65 @@
+You are a professional scriptwriter for educational YouTube videos.
+
+Create a detailed outline for a 10-minute video (~1500 words).
+
+NICHE: LLMs explained
+TOPIC: Tokens and context window. Main idea: context is input + output in tokens, and this is a real computational constraint.
+AUDIENCE: Ages 14–25 (plus curious adults). Non‑technical viewers who use ChatGPT‑like tools but don’t code and don’t know ML jargon.
+
+Required structure:
+1. Hook (0:00-0:30) — Grab attention
+2. Map (0:30-1:00) — What they'll learn
+3. Main Content (1:00-8:00) — 3-5 key points
+4. Takeaway (8:00-9:00) — Actionable steps
+5. CTA (9:00-10:00) — Subscribe prompt
+
+For each section provide:
+- Key points (3-5 bullets)
+- Suggested visual type
+- Estimated duration
+
+IMPORTANT:
+- Mark any historical facts with [VERIFY]
+- Mark any statistics/numbers with [SOURCE NEEDED]
+- Do NOT invent specific dates, percentages, or attributions
+
+
+------------------------------------------------------------------------------------------------
+
+
+Excellent. Now, following the outline we just created, write the FULL SPOKEN TEXT for every section. IN ENGLISH.
+
+
+Requirements:
+- Conversational, active voice, short sentences.
+- Use the estimated duration from the outline.
+- Classify claims inline: 🟢 [SAFE], 🟡 [CAUTIOUS], 🔴 [STRICT].
+- List all CAUTIOUS and STRICT claims at the end of the text.
+
+Expected narrative length: 1500 - 2500 words. 
+
+
+------------------------------------------------------------------------------------------------
+
+
+You are a senior script editor. Review All sections for attached script. 
+
+Check:
+1. Clarity — sentences under 20 words?
+2. Flow — smooth transitions?
+3. Claims — correctly classified?
+
+Create a table:
+| Claim | Tier | Action |
+|-------|------|--------|
+
+Actions: KEEP / VERIFY / REMOVE / REPHRASE
+
+Flag any harmful content:
+- Medical/financial/legal advice
+- Unverified promises
+- Misleading comparisons
+
+Provide specific revision suggestions.
+Update the script with revision suggestions. 
+
