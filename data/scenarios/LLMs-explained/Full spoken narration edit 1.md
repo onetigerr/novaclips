@@ -1,0 +1,219 @@
+Full spoken narration
+
+---
+
+1. Hook (0:00–0:30)
+
+Have you ever been in a chat with an AI, and it feels amazing… then suddenly it forgets the most important thing you said?
+
+Like, you told it, “Make it a short list.” And three messages later, it drops a giant essay anyway.
+
+Or you say, “Don’t mention spoilers.” And it casually spoils the plot.
+
+It’s tempting to think the AI is being lazy or dramatic.  
+But most of the time, it’s something way more boring and often very real: it ran out of space.
+
+And that “space” has a name. It’s the context window.
+
+Here’s the twist: your message becomes tokens. The model’s reply does too. Both spend the same limited budget.
+
+Once you see that, “AI amnesia” starts making a lot more sense.
+
+---
+
+2. Map (0:30–1:00)
+
+In the next few minutes, I’ll make two weird words feel normal: tokens and context window.
+
+First, we’ll talk about tokens. They’re not exactly words. They’re more like chunks of text the model works with.
+
+Second, we’ll talk about the context window. That’s the maximum amount of tokens the model can pay attention to at one time.
+
+Then we’ll hit the main rule. Your input tokens plus the model’s output tokens have to fit inside one shared limit in most chat setups.
+
+And finally, you’ll get a simple toolkit. You’ll learn how to keep the AI “on track,” even in long chats, without any coding or tech jargon.
+
+---
+
+3. Main Content (1:00–8:00)
+
+Key point 1 (1:00–2:30): Tokens are not words
+
+Let’s start with tokens, because this is the part nobody explains well.
+
+When you type a message, the model doesn’t truly see “words” the way you do.  
+It sees tokens.
+
+A token is a small chunk of text.  
+Sometimes it’s a whole word.  
+Sometimes it’s part of a word.  
+Sometimes it’s punctuation, like a comma, or a dash, or three exclamation points in a row.
+
+Here’s a simple way to picture it. Imagine your sentence is a LEGO build.  
+Words are the big pieces you notice.  
+Tokens are the smaller pieces the model snaps together behind the scenes.
+
+So if you type something like “unbelievable,” it might get split into a couple of chunks instead of staying as one neat piece.  
+And if you type “Wait… what?!!” the dots and punctuation can add extra tokens you didn’t expect.
+
+That’s why “this looks short” can still be expensive.  
+And “this looks long” might be cheaper than you think.
+
+People sometimes use a rough rule of thumb like “in English, tokens average around four characters.” That’s a handy approximation, but it’s not exact.
+
+Don’t treat that like a law of physics. It varies a lot by language, spacing, formatting, and the exact text.
+
+The only point you need today is this: tokens are the unit the model counts.  
+And the model has a maximum number it can handle at once.
+
+---
+
+Key point 2 (2:30–4:15): The context window is working memory with a ceiling
+
+Now let’s talk about that maximum.
+
+The context window is the amount of text—in tokens—that the model can consider at one time while generating its next reply.
+
+I like to call it “working memory,” but with one big warning: it’s not human memory.  
+It’s more like a limited-size whiteboard.
+
+You can write a bunch of stuff on the whiteboard.  
+But once it’s full, you can’t keep adding without erasing something.
+
+In chat, the whiteboard holds the conversation so far. That includes your earlier messages, the model’s earlier replies, and sometimes hidden system text or instructions.
+
+So what happens when the chat gets too long?
+
+In some apps, older messages may be truncated, summarized, or no longer fully visible to the model.  
+And when the model can’t see something, it can’t reliably follow it.
+
+That’s when you get the classic moment: you set a rule at the start, like “Keep it under 100 words,” and later the model breaks it.  
+Not because it wants to. But because the rule might not be inside the window anymore.
+
+And yes, this is a real constraint, not just “bad design.”  
+Processing more context generally takes more computation and memory.
+
+One more important note: some apps advertise extra features like saved memory, profile notes, or retrieval from documents.  
+That can help. But the model still generates each response based on the tokens it has in its active context right now.
+
+---
+
+Key point 3 (4:15–6:00): The big rule—input plus output share the same budget
+
+This is the most useful idea in the whole video, so I’m going to say it slowly.
+
+The context window is not just what you type.  
+In many chat tools, it’s what you type plus what the model replies.
+
+So you and the model are basically sharing one backpack.  
+Your prompt goes in the backpack.  
+Then the model’s answer goes in the same backpack.  
+And the backpack has a fixed size.
+
+That means a long answer doesn’t just cost time.  
+It can crowd out older instructions and details.
+
+Here’s a situation you’ve probably lived.
+
+You paste a big wall of text and say, “Read all of this and write me a detailed 2,000-word response.”  
+The model tries. It starts writing.  
+But the more it writes, the more tokens it uses.  
+And those output tokens are eating into the same total context capacity.
+
+So the model can end up in a weird spot where it’s generating, but it no longer has room to keep the full original instructions in view.
+
+That’s why a smarter move is often: ask for a tight outline first.  
+Then expand one section at a time.
+
+You’re not lowering quality. You’re managing the budget.
+
+Think of it like ordering food.  
+If you order everything at once, your table gets crowded and messy.  
+If you order in courses, you keep control.
+
+Same information. Better pacing. Less chaos.
+
+---
+
+Key point 4 (6:00–7:15): Bigger context usually means more compute (and can mean more cost and delay)
+
+Now, why don’t we just make the context window unlimited?
+
+Because more context usually means more work.
+
+At a high level, the model has to consider the context while choosing each next token.  
+So when the context grows, the computation needed per step can increase.
+
+You can feel this in real tools.  
+Replies can get slower. Apps may warn you about limits. Some interfaces nudge you toward shorter prompts.
+
+Also, different models can offer different context sizes, and those choices often involve tradeoffs.  
+Sometimes you get a bigger window but higher cost.  
+Sometimes you get speed but a smaller window.  
+And sometimes you get “good enough” memory because the app summarizes or compresses old messages.
+
+So yes, a bigger context window can improve results in many cases.  
+But it’s not free.  
+It’s an engineering constraint you can’t just wish away.
+
+So bigger windows help—but you can still hit the ceiling. Here’s what that looks like in real chats.
+
+---
+
+Key point 5 (7:15–8:00): What happens when you exceed the window
+
+Okay. What actually happens when you hit the limit?
+
+A few common things.
+
+Sometimes the tool refuses your request and tells you the context is too long.  
+Sometimes it silently drops or summarizes older parts of the chat.  
+Sometimes it produces an answer that sounds confident but ignores earlier rules or facts you already gave it.
+
+And that last one is the most confusing, because it feels like the model is “lying.”  
+But a simpler explanation is often: it can’t see what it needs anymore.
+
+Here’s a practical diagnostic you can use today: when the model starts contradicting your earlier constraints, first suspect that those constraints aren’t in its active context anymore.
+
+That’s not you being paranoid. That’s you being realistic about a limited window.
+
+---
+
+4. Takeaway (8:00–9:00)
+
+Now let’s turn all of this into habits you can actually use.
+
+First: work in stages.  
+Ask for an outline. Then pick one section. Then expand it.  
+This keeps each turn smaller and easier to keep “in view.”
+
+Second: keep your instructions compact.  
+Instead of writing a long story about what you want, try a tiny “Constraints” block.  
+Like: “Tone: friendly. Format: bullets. Must include: three examples. Must avoid: spoilers.”
+
+Third: refresh the context on purpose.  
+Every few turns, ask the model to summarize the key facts and decisions in 5 to 8 bullets.  
+Then paste that summary back into the chat when you continue.  
+That’s like pinning the important notes onto the whiteboard so they don’t get erased.
+
+Fourth: don’t paste everything. Paste what matters.  
+If you’re asking about one paragraph, share one paragraph.  
+If you’re asking about one scene, share one scene.  
+You’ll usually get better results with smaller, cleaner inputs.
+
+---
+
+5. CTA (9:00–10:00)
+
+So next time an AI “forgets,” don’t just get annoyed. Get strategic.
+
+Remember the hidden rule: in many chat tools, you’re spending tokens on the way in and on the way out, inside one fixed context window.
+
+Try this the very next time you use a chat tool: ask for a short outline. Then expand one part at a time. Keep a running bullet summary and paste it forward.
+
+Now I’m curious. What’s the biggest thing you’ve tried to do in a single prompt?  
+Was it rewriting a document? Planning a project? Studying for an exam?  
+Tell me in the comments, because I read them and I borrow your ideas for future videos.
+
+And if you want simple explanations of how these tools actually work—tokens, context windows, hallucinations, and how to get more reliable answers—hit subscribe.  
+I’ve got more videos coming to help you get better results with LLMs, even if you never write a line of code.

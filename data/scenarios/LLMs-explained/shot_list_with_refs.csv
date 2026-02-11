@@ -1,0 +1,110 @@
+Scene,IDs,Subtitles,Image Prompt,Reference Images
+1,1-2,"""Have you ever been in a chat with an AI and it feels amazing... then suddenly it forgets the most important thing you said""","Subject: Medium shot of a young man in modern techwear sitting at a wooden cafe table, looking frustrated at a transparent holographic tablet hovering in front of him. The hologram shows a chat interface turning from blue to glitchy red. 
+Environment: Cozy coffee shop with warm lighting, blurred background of espresso machines and plants.
+Style Token: Arcane-series artistic style, hand-painted digital textures with visible brushstrokes, ink-trace shadows, and dramatic volumetric lighting. Modern techwear aesthetic, sleek geometric shapes, sophisticated color palette of Deep Cobalt, Electric Cyan, and Soft Amber. Stylized realism, high-contrast cinematic atmosphere, 8k resolution.","architect_768.jpeg, sunny_768.jpeg"
+2,3-4,"""Like you told it make it a shortlist... and three messages later it drops a giant essay anyway""","Subject: Isometric close-up of a futuristic chat interface floating in a void. On the left, a small amber box labeled ""CONSTRAINT: SHORTLIST"". On the right, a massive, overflowing cascade of cyan text blocks tumbling down, ignoring the constraint. 
+Style Token: Arcane-series artistic style, hand-painted digital textures, visible brushstrokes. Deep Cobalt background. Electric Cyan text blocks, Soft Amber constraints. High contrast, glowing UI elements.",items_768.jpeg
+3,5,"""Or you say don't mention spoilers and it casually spoils the plot""","Subject: Isometric view of a digital warning sign glowing red with a ""NO SPOILERS"" icon. A large, heavy block of cyan text crashes down on top of it, cracking the sign. 
+Style Token: Arcane-series artistic style, hand-painted digital textures. Deep Cobalt background. Dramatic lighting, red danger glow vs cyan text glow.",items_768.jpeg
+4,6-10,"""It's tempting to think the AI is being lazy... but most of the time it's... the context window. Here's the twist...""","Subject: Wide isometric view of a floating digital whiteboard with a glowing slate-colored frame. The whiteboard is completely packed with glowing cyan and amber data blocks, with no empty space left. Some blocks are falling off the edge into darkness. 
+Style Token: Arcane-series artistic style, hand-painted digital textures. Deep Cobalt background. Minimalist Slate frame, Electric Cyan data.","whiteboard_768.jpeg, items_768.jpeg"
+5,11-13,"""your message becomes tokens... both spend the same limited budget""","Subject: Isometric view of a translucent tactical backpack with a glowing ""capacity meter"" on the side. A stream of Amber blocks (user input) and a stream of Cyan blocks (AI output) are both flowing into the *same* main compartment, which is bulging at the seams. 
+Style Token: Arcane-series artistic style, hand-painted digital textures. Deep Cobalt background. Soft Amber and Electric Cyan glowing blocks. Detailed techwear texture on the backpack.",items_768.jpeg
+6,14-16,"""Once you see that AI amnesia starts making a lot more sense... Tokens and context window""","Subject: A split screen or dual-hologram view. Left side: A single glowing Cyan cube (Token). Right side: A glowing Slate frame (Window). Both are floating over a blurred tech workspace background. 
+Style Token: Arcane-series artistic style, hand-painted digital textures. Deep Cobalt background. Sharp focus on the two key symbols. Cinematic lighting.","items_768.jpeg, whiteboard_768.jpeg"
+7,17-20,"""First we'll talk about tokens... they're more like chunks of text the model works with""","Subject: Close-up of hands (techwear gloves) organizing a pile of glowing cyan cubes on a workbench. The cubes have faint rune-like text fragments on them. 
+Environment: Digital workshop with tools in background. 
+Style Token: Arcane-series artistic style, hand-painted digital textures. Deep Cobalt background. Electric Cyan glow from the cubes illuminating the hands.","items_768.jpeg, architect_768.jpeg"
+8,21-23,"""Second we'll talk about the context window... maximum amount of tokens the model can pay attention to""","Subject: Isometric view of the ""Whiteboard"" floating in the void. It is empty except for a glowing frame. A spotlight sweeps across the empty surface, highlighting the limited area. 
+Style Token: Arcane-series artistic style, hand-painted digital textures. Deep Cobalt background. Minimalist Slate frame with Electric Cyan glowing edges.",whiteboard_768.jpeg
+9,24-26,"""Then we'll hit the main rule... input tokens + output tokens have to fit inside one shared limit""","Subject: Isometric view of a balance scale. On one side, a pile of Amber blocks. On the other, a pile of Cyan blocks. The scale is balanced perfectly inside a glowing circular boundary line. 
+Style Token: Arcane-series artistic style, hand-painted digital textures. Deep Cobalt background. Soft Amber and Electric Cyan elements.",items_768.jpeg
+10,27-28,"""And finally you'll get a simple toolkit... keep the AI on track... without coding""","Subject: Top-down view of a ""Toolkit"" being opened on a cafe table. Inside are glowing holographic tools: a summarizer icon, a scissors icon, and a checklist. 
+Environment: Cafe table surface (wood texture). 
+Style Token: Arcane-series artistic style, hand-painted digital textures. Realistic wood texture mixed with tech holograms.","items_768.jpeg, sunny_768.jpeg"
+11,29-32,"""Let's start with tokens... the model doesn't truly see words... it sees tokens""","Subject: A large, glowing word ""UNBELIEVABLE"" floating in the air. It shatters/splits into distinct glowing chunks (tokens): ""UN"", ""BELIEV"", ""ABLE"". 
+Style Token: Arcane-series artistic style, hand-painted digital textures. Deep Cobalt background. Electric Cyan text with particle effects.",items_768.jpeg
+12,33-37,"""Sometimes it's a whole word... sometimes punctuation... like three exclamation points""","Subject: A magnified view of punctuation marks (!!!) turning into three separate, heavy glowing blocks. 
+Style Token: Arcane-series artistic style, hand-painted digital textures. Deep Cobalt background. High contrast.",items_768.jpeg
+13,38-41,"""Imagine your sentence is a Lego build... words are big pieces, tokens are smaller pieces""","Subject: Close-up of hands assembling a complex structure using glowing LEGO-like bricks. Some bricks are large (words), others are tiny plates (tokens). 
+Environment: Cafe table. 
+Style Token: Arcane-series artistic style, hand-painted digital textures. Realistic environment with stylized tech elements (the blocks).","items_768.jpeg, sunny_768.jpeg"
+14,42-45,"""So if you type unbelievable... it might get split... instead of one neat piece""","Subject: Isometric view of a conveyor belt. The word ""UNBELIEVABLE"" enters on the left, passes through a scanner, and exits as multiple separate cyan blocks on the right. 
+Style Token: Arcane-series artistic style, hand-painted digital textures. Tech workshop environment. Deep Cobalt and Slate machinery.",items_768.jpeg
+15,46-49,"""And if you type wait what... punctuation adds extra tokens... this looks short but can be expensive""","Subject: Split screen. Left: A short sentence ""Wait... what?!!"" with a heavy stack of token blocks above it. Right: A longer smooth sentence with fewer blocks. 
+Style Token: Arcane-series artistic style, hand-painted digital textures. Comparison layout.","items_768.jpeg, whiteboard_768.jpeg"
+16,50-56,"""People use a rule of thumb... 4 characters... but it varies... don't treat it like a law of physics""","Subject: A holographic ""Ruler"" measuring a token block. The measurement flickers and changes numbers, showing instability/variance. 
+Style Token: Arcane-series artistic style, hand-painted digital textures. Tech detailing. Glitch effects on the numbers.",items_768.jpeg
+17,57-58,"""Tokens are the unit the model counts... and the model has a maximum number""","Subject: A digital counter clicking upwards rapidly, approaching a red ""MAX"" line. 
+Style Token: Arcane-series artistic style, hand-painted digital textures. Dramatic red lighting as it approaches the limit.",items_768.jpeg
+18,59-63,"""Context window is the amount of text... I like to call it working memory""","Subject: A glowing brain silhouette, but instead of organic matter, it's filled with organized stacks of cyan blocks. 
+Style Token: Arcane-series artistic style, hand-painted digital textures. Deep Cobalt background. Electric Cyan brain structure.",items_768.jpeg
+19,64-67,"""But it's not human memory... it's more like a limited size whiteboard""","Subject: Wide shot of a clean, modern office. A large physical whiteboard on the wall is half-full with notes. A person (Architect silhouette) is writing new notes. 
+Environment: Modern Office. 
+Style Token: Arcane-series painterly style applied to real-world location (Office). Hand-painted digital finish. Natural lighting.","office_768.jpeg, architect_768.jpeg"
+20,68-71,"""In chat the whiteboard holds the conversation so far... your messages, model's replies""","Subject: Close-up of the whiteboard. We see different colored sticky notes (Amber for user, Cyan for AI) being arranged in chronological order. 
+Style Token: Arcane-series artistic style. Detailed texture on the notes and board.",whiteboard_768.jpeg
+21,72-76,"""What happens when it gets too long... older messages truncated... can't see it""","Subject: Time-lapse style shot of the whiteboard. It fills up completely. As new notes are added at the bottom, a ""wiper"" automatically erases the notes at the top. 
+Style Token: Arcane-series artistic style. Motion blur effect on the wiper. Fading/ghosting of top notes.",whiteboard_768.jpeg
+22,77-82,"""Classic moment... set a rule at start... later model breaks it... rule not in window""","Subject: Specific focus on a sticky note at the very top labeled ""RULE: NO EMOJIS"". It gets erased/wiped away. Then, a new note appears at the bottom with a smiley face. 
+Style Token: Arcane-series artistic style. Dramatic irony visualized.",whiteboard_768.jpeg
+23,83-86,"""Real constraint... processing more context takes more computation""","Subject: Isometric view of a server rack. It starts calm (blue lights), then as more data blocks flow in, it heats up (orange/red lights) and steam vents out. 
+Style Token: Arcane-series artistic style. Tech visualization. Volumetric lighting (steam/heat).",items_768.jpeg
+24,87-90,"""Some apps advertise saved memory... but model still generates based on active context""","Subject: A ""Library"" archive in the background (dark, dim) vs a bright ""Spotlight"" area (active context). The model only looks at what is in the spotlight. 
+Style Token: Arcane-series artistic style. High contrast lighting. Deep Cobalt shadows.","dark_768.jpeg, whiteboard_768.jpeg"
+25,91-95,"""Most useful idea... Context is what you type PLUS what model replies""","Subject: The ""Backpack"" metaphor again. A clear view of the empty backpack. An Amber block (Prompt) is put in. Then a huge pile of Cyan blocks (Reply) is dumped in, filling it up instantly. 
+Style Token: Arcane-series artistic style. Simple, clear composition.",items_768.jpeg
+26,96-98,"""Sharing one backpack... prompt goes in... answer goes in... fixed size""","Subject: Character (Architect) in an outdoor urban setting, struggling to zip up a tactical backpack that is overflowing with glowing blocks. 
+Environment: Urban Park/Street. 
+Style Token: Arcane-series painterly style applied to real-world location. Character Shot #4.","architect_768.jpeg, sunny_768.jpeg"
+27,99-100,"""Long answer crowds out older instructions""","Subject: Close-up of the backpack interior (cross-section). New Cyan blocks pushing old Amber blocks out of the bottom mesh. 
+Style Token: Arcane-series artistic style. Cross-section schematic view.",items_768.jpeg
+28,101-104,"""Situation... big wall of text... write 2000 word response... model starts writing""","Subject: Isometric view of a text editor. A massive block of text is pasted in. A progress bar labeled ""Context"" jumps to 80% instantly. 
+Style Token: Arcane-series artistic style. UI visualization. Animated progress bar.",items_768.jpeg
+29,105-107,"""More it writes, more tokens it uses... eating into same total capacity""","Subject: The progress bar continues to fill rapidly as text generates, hitting 100% and turning red. 
+Style Token: Arcane-series artistic style. Tension building.",items_768.jpeg
+30,108-110,"""Model ends up in weird spot... no room to keep original instructions""","Subject: The ""Context Window"" frame sliding down a long document. The original instructions at the top slide out of the frame and turn gray/inactive. 
+Style Token: Arcane-series artistic style. Ghosting effect on old text.","whiteboard_768.jpeg, items_768.jpeg"
+31,111-114,"""Smarter move: tight outline... expand one section... managing the budget""","Subject: Split screen comparison. Left: Chaos/Overflow. Right: A neat stack of small blocks, being handled one by one. 
+Style Token: Arcane-series artistic style. Tidy vs Messy.","items_768.jpeg, whiteboard_768.jpeg"
+32,115-120,"""Food ordering analogy... order all at once vs courses... less chaos""","Subject: Restaurant scene. One table is overflowing with dishes, mess everywhere. The next table is clean, with just one course being served. 
+Environment: Restaurant interior. 
+Style Token: Arcane-series painterly style applied to real-world location (Restaurant). Warm lighting.","sunny_768.jpeg, persons_768.jpeg"
+33,121-126,"""Why not unlimited?... More context = more work... computation increases""","Subject: A gym scene. A weightlifter is struggling to lift a bar that has way too many plates on it. 
+Environment: Gym interior. 
+Style Token: Arcane-series painterly style applied to real-world location (Gym). Physical strain visualization.",persons_768.jpeg
+34,127-130,"""Replies get slower... warnings... trade offs""","Subject: Isometric UI of a chat app. A ""turtle"" icon appears next to a loading bar that is moving very slowly. 
+Style Token: Arcane-series artistic style. Humorous UI element.",items_768.jpeg
+35,131-135,"""Bigger window but higher cost... sometimes good enough memory with summary""","Subject: A balance scale. One side has a ""Large Window"" icon, the other has a stack of ""Gold Coins"" (Cost). They balance out. 
+Style Token: Arcane-series artistic style. Symbolic representation.",items_768.jpeg
+36,136-139,"""Engineering constraint... bigger windows help but you still hit ceiling""","Subject: Vertical camera pan up a skyscraper (representing context). Even at the top, there is a roof/ceiling. 
+Environment: Urban exterior / abstract structure. 
+Style Token: Arcane-series artistic style. Massive scale.",sunny_768.jpeg
+37,140-144,"""What happens when you hit limit... tool refuses... drops older parts""","Subject: Isometric view of a file cabinet. A mechanical arm tries to stuff a folder in, but the drawer is stuck. It shreds an old folder to make room. 
+Style Token: Arcane-series artistic style. Mechanical details.",items_768.jpeg
+38,145-149,"""Produces answer that sounds confident but ignores rules... feels like lying... can't see needs""","Subject: The AI avatar (a glowing geometric shape) looking confident/shrugging, while blindfolded. 
+Style Token: Arcane-series artistic style. Abstract characterization (no human face).",items_768.jpeg
+39,150-155,"""Diagnostic: contradicting earlier constraints... not paranoid... realistic""","Subject: A detective looking at a clue board with red string. The string leads to a void where a clue used to be. 
+Environment: Detective office / dim room. 
+Style Token: Arcane-series artistic style. Noir atmosphere.","dark_768.jpeg, persons_768.jpeg"
+40,156-161,"""What can you do? Habits... Work in stages... outline... expand""","Subject: The Architect at a workbench, carefully arranging tools in a neat row. 
+Environment: Workshop / Home Office. 
+Spec Ref: Character Shot #5. 
+Style Token: Arcane-series painterly style. Organized, calm atmosphere.","architect_768.jpeg, office_768.jpeg"
+41,162-167,"""Compact instructions... tiny constraints block... refresh context""","Subject: Close-up of a digital post-it note. It has a concise bulleted list. A hand pins it firmly to the frame of the whiteboard. 
+Style Token: Arcane-series artistic style. UI/Paper texture mix.","whiteboard_768.jpeg, architect_768.jpeg"
+42,168-171,"""Summarize key facts... paste back... pinning notes""","Subject: Screen recording style mockup (Arcane stylized). A user highlights text, clicks ""Summarize"", gets 5 bullets, and pastes them into a new chat. 
+Style Token: Arcane-series artistic style. Stylized UI flow.","items_768.jpeg, whiteboard_768.jpeg"
+43,172-176,"""Don't paste everything... share one paragraph/scene... better results""","Subject: A pair of scissors cutting a small, relevant section out of a large document. The rest of the document falls away. 
+Style Token: Arcane-series artistic style. Visual metaphor.",items_768.jpeg
+44,177-182,"""Next time AI forgets... get strategic... spending tokens in and out""","Subject: The ""Backpack"" again, but this time neatly packed. The capacity meter is at a healthy 50% green. 
+Style Token: Arcane-series artistic style. Satisfaction/Resolution.",items_768.jpeg
+45,183-185,"""Ask for outline... keep running summary""","Subject: A checklist on a cafe table with all items ticked off green. A steaming cup of coffee next to it. 
+Environment: Cafe table. 
+Style Token: Arcane-series painterly style. Relaxed vibe.",sunny_768.jpeg
+46,186-191,"""Curious... biggest thing you've tried... comments... borrow ideas""","Subject: The Architect sitting in a relaxed pose in the cafe, looking directly at the ""camera"", holding a coffee cup. 
+Environment: Cafe. 
+Spec Ref: Character Shot #6 (CTA). 
+Style Token: Arcane-series painterly style. Engaging eye contact (if possible with style). Warmth.","architect_768.jpeg, sunny_768.jpeg"
+47,192-197,"""Simple explanations... subscribe... better results""","Subject: End screen layout. A stylized ""Subscribe"" button in the center (Arcane style gold/blue). Background is a montage of the Backpack, Whiteboard, and Lego blocks. 
+Style Token: Arcane-series artistic style. Title card composition.","items_768.jpeg, whiteboard_768.jpeg"

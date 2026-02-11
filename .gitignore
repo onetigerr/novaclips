@@ -1,4 +1,16 @@
 /venv/
 .idea/
 
+# project files
 .env
+/archive
+
+/data/screenshots
+
+/data/scenarios/LLMs-explained/generations/
+/data/scenarios/LLMs-explained/generations.08/
+/data/scenarios/LLMs-explained/pictures/
+/data/scenarios/LLMs-explained/pictures_2k/
+
+/data/audio/voices/
+/data/audio/LLMs explained/full_normalized.wav

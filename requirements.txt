@@ -1,1 +1,4 @@
 edge-tts
+google-genai
+python-dotenv
+Pillow
